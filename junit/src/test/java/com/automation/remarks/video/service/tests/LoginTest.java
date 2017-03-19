@@ -12,13 +12,7 @@ import static com.codeborne.selenide.Condition.text;
 /**
  * Created by sergey on 19.03.17.
  */
-public class LoginTest {
-
-    @BeforeAll
-    public static void setUp(){
-        ChromeDriverManager.getInstance().setup();
-        Configuration.browser = "chrome";
-    }
+public class LoginTest extends BaseTest{
 
     @Test
     public void testCanLoginWithValidUser() {
