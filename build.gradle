@@ -23,7 +23,6 @@ subprojects{
     }
 
     dependencies{
-        compile group: 'org.projectlombok', name: 'lombok', version: '1.16.14.0'
         compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.6.1'
     }
 }
