@@ -7,6 +7,8 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.text;
+
 /**
  * Created by sergey on 19.03.17.
  */
@@ -21,6 +23,7 @@ public class LoginTest {
     @Test
     public void testCanLoginWithValidUser() {
         SelenideUtils.open(LoginPage.class)
-                .loginAs("admin","admin");
+                .loginAs("admin","admin")
+                .logo.shouldHave(text("Video service"));
     }
 }
