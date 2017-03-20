@@ -1,0 +1,20 @@
+udo: required
+
+language: java
+jdk:
+  - oraclejdk8
+
+services:
+  - docker
+
+before_install:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew clean junit:test testng:test
+
+notifications:
+  email:
+    recipients:
+      - sergio_89@ukr.net
+    on_failure: always
