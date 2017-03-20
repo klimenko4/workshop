@@ -12,6 +12,7 @@ services:
   - docker
 
 before_install:
+  - chmod +x ./testng/.upload_reports.sh
   - chmod +x gradlew
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
@@ -25,6 +26,8 @@ before_install:
 
 script:
   - ./gradlew clean junit:test testng:test
+
+after_script: "./testng/.upload_reports.sh"
 
 notifications:
   email:
