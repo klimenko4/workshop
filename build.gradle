@@ -41,8 +41,9 @@ subprojects{
     allure {
         aspectjweaver = true
         junit = true
-        allureResultsDir = "$buildDir/allure-results"
-        allureReportDir = "$buildDir/allure-report"
+        testNG = true
+//        allureResultsDir = "$buildDir/../allure-results"
+//        allureReportDir = "$buildDir/../allure-report"
         allureVersion = "1.4.24.RC3"
     }
 
