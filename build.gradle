@@ -5,14 +5,7 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "ru.d10xa:gradle-allure-plugin:0.5.0"
-    }
-}
+
 
 // Apply the java plugin to add support for Java
 
@@ -21,8 +14,6 @@ allprojects{
 }
 
 subprojects{
-
-    apply plugin: 'ru.d10xa.allure'
 
     // In this section you declare where to find the dependencies of your project
     repositories {
@@ -37,13 +28,4 @@ subprojects{
     }
 
     test.outputs.upToDateWhen {false}
-
-    allure {
-        aspectjweaver = true
-        junit = true
-        testNG = true
-        allureVersion = "1.4.24.RC3"
-    }
-
-    tasks.withType(Test)*.finalizedBy allureReport
 }

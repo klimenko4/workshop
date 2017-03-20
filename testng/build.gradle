@@ -1,7 +1,28 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "ru.d10xa:gradle-allure-plugin:0.5.0"
+    }
+}
+
+apply plugin: 'ru.d10xa.allure'
+
+
 dependencies {
     compile project(":core")
     compile group: 'org.testng', name: 'testng', version: '6.11'
 }
+
+allure {
+    aspectjweaver = true
+    junit = true
+    testNG = true
+    allureVersion = "1.4.24.RC3"
+}
+
+tasks.withType(Test)*.finalizedBy allureReport
 
 test{
     useTestNG()
