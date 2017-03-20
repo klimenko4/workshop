@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.page;
 public class LoginPage extends Page {
 
     public LoginPage open(){
-        Selenide.open("http://localhost:8086");
+        Selenide.open("/");
         return this;
     }
 
