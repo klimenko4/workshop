@@ -13,6 +13,7 @@ apply plugin: 'ru.d10xa.allure'
 dependencies {
     compile project(":core")
     compile group: 'org.testng', name: 'testng', version: '6.11'
+    compile group: 'com.automation-remarks', name: 'video-recorder-testng', version: '1.4'
 }
 
 allure {
