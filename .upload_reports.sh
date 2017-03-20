@@ -8,7 +8,7 @@ if [ -z "$HERE" ] ; then
 	exit 1  # fail
 fi
 
-ARTIFACTS_DIR="${HERE}/build/"
+ARTIFACTS_DIR="${HERE}/testng/build/"
 ARTIFACTS_FILE=${TRAVIS_JOB_NUMBER}_log.tar.gz
 
 ls $ARTIFACTS_DIR
