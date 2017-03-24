@@ -1,19 +1,30 @@
 buildscript {
     repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
         jcenter()
     }
     dependencies {
         classpath "ru.d10xa:gradle-allure-plugin:0.5.0"
+        classpath 'org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:0.4.32'
+        classpath "gradle.plugin.com.github.opengl-8080:assertjGen-gradle-plugin:1.1.2"
     }
 }
 
 apply plugin: 'ru.d10xa.allure'
-
+apply plugin: 'jsonschema2pojo'
+apply plugin: "com.github.opengl-BOBO.assertjGen"
 
 dependencies {
     compile project(":core")
     compile group: 'org.testng', name: 'testng', version: '6.11'
     compile group: 'com.automation-remarks', name: 'video-recorder-testng', version: '1.4'
+    compile 'commons-lang:commons-lang:2.6'
+    // Required if generating JSR-303 annotations
+    compile 'javax.validation:validation-api:1.1.0.CR2'
+    // Required if generating Jackson 2 annotations
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.1.4'
 }
 
 allure {
@@ -21,6 +32,26 @@ allure {
     junit = true
     testNG = true
     allureVersion = "1.4.24.RC3"
+}
+
+//https://github.com/joelittlejohn/jsonschema2pojo/tree/master/jsonschema2pojo-gradle-plugin
+
+jsonSchema2Pojo {
+    source = files("${sourceSets.main.output.resourcesDir}/json")
+    targetDirectory = file("${project.buildDir}/generated-sources/js2p")
+    sourceType = 'json'
+    includeAccessors = true
+}
+
+assertjGen {
+    // specify target class or package names by array. (defailt is empty array)
+    classOrPackageNames = ['com.domain']
+
+    // specify output dir(String path or File object). (default is 'src/test/java-gen')
+    outputDir = 'src/test/matchers'
+
+    // specify AssertJ Assertions Generator dependency. (default is ver 2.0.0)
+    assertjGenerator = 'org.assertj:assertj-assertions-generator:2.0.0'
 }
 
 tasks.withType(Test)*.finalizedBy allureReport
