@@ -25,7 +25,7 @@ before_install:
 
 
 script:
-  - ./gradlew clean junit:test testng:test
+  - ./gradlew clean testng:test
 
 after_script: "./.upload_reports.sh"
 
